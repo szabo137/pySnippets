@@ -1,0 +1,75 @@
+event: ns : Nanoseconds
+events: ns
+summary: 53200000
+fl=/Users/szabo/localGit/gitHubWork/pySnippets/profileTest/testMod.py
+fn=count
+7 13814000
+cfl=~
+cfn=<math.sqrt>
+calls=100000 0
+7 7951000
+cfl=~
+cfn=<range>
+calls=1 0
+7 2851000
+
+fl=/Users/szabo/localGit/gitHubWork/pySnippets/profileTest/testMod.py
+fn=count2
+12 18612999
+cfl=~
+cfn=<math.sqrt>
+calls=100000 0
+12 9064000
+cfl=~
+cfn=<numpy.core.multiarray.arange>
+calls=1 0
+12 90999
+
+fl=/Users/szabo/localGit/gitHubWork/pySnippets/profileTest/testMod.py
+fn=count3
+17 712000
+cfl=~
+cfn=<numpy.core.multiarray.arange>
+calls=1 0
+17 85999
+
+fl=/Users/szabo/localGit/gitHubWork/pySnippets/profileTest/testMod.py
+fn=runAll
+21 17000
+cfl=/Users/szabo/localGit/gitHubWork/pySnippets/profileTest/testMod.py
+cfn=count
+calls=1 7
+21 24616000
+cfl=/Users/szabo/localGit/gitHubWork/pySnippets/profileTest/testMod.py
+cfn=count2
+calls=1 12
+21 27767999
+cfl=/Users/szabo/localGit/gitHubWork/pySnippets/profileTest/testMod.py
+cfn=count3
+calls=1 17
+21 798000
+
+fl=<string>
+fn=<module>
+1 1000
+cfl=/Users/szabo/localGit/gitHubWork/pySnippets/profileTest/testMod.py
+cfn=runAll
+calls=1 21
+1 53199000
+
+fl=~
+fn=<math.sqrt>
+0 17015000
+
+fl=~
+fn=<method 'disable' of '_lsprof.Profiler' objects>
+0 0
+
+fl=~
+fn=<numpy.core.multiarray.arange>
+0 177000
+
+fl=~
+fn=<range>
+0 2851000
+
