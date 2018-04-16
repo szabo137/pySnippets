@@ -1,21 +1,44 @@
 import numpy as np
 from scipy import integrate, special
 import time
+import math
 
 
 def func(x):
     #print "ping"
     #time.sleep(0.01)
-    if not isinstance(x,np.ndarray):
-        x=np.array([x])
-    return np.sin(x) - np.cos(x)*np.exp(x)#+np.ones(len(x))
+    return np.array([math.sin(x) for item in np.arange(16)])
+
+
+def integCauchy(fkt,bound,gauss=None,mode='quad'):
+    """
+    integrate fkt(x)/x over symetric interval [-bound,bound]
+    """
+    #bounds=gauss.bounds
+    gauss.transform(0.0,bound)
+    #test=np.ones(5)
+    #test2=np.arange(5)
+    tempFunc=lambda x: (fkt(x)-fkt(-x))/x
+    #tempVals =(fkt(gauss.points) - fkt(-gauss.points))/gauss.points
+    tempVals=np.array(map(tempFunc,gauss.points)).T
+    #tempVals=np.map(tempFunc,gauss.points).T
+    #tempVals =(fkt(test) - fkt(-test))/test
+    #print tempVals
+    #print np.array(tempVals2).T
+    outTemp=(gauss.weights*tempVals)
+    #outTemp=(test2*tempVals)
+    #print outTemp
+    #gauss.transform(*bounds)
+    return np.sum(outTemp,axis=1)
+
+
 
 
 start = time.time()
-resQUAD = integrate.quad(func, -1, 1, weight='cauchy', wvar=0)
+#resQUAD = integrate.quad(func, -1, 1, weight='cauchy', wvar=0)
 end=time.time() - start
 
-print"resQUADcauchy: %s (time: %1.2e)"%(resQUAD,end)
+#print"resQUAD: %s (time: %1.2e)"%(resQUAD,end)
 
 
 # Check against known result
@@ -37,7 +60,6 @@ class gaussPoints(object):
 
     def resetPoints(self):
         self.points, self.weights = np.polynomial.legendre.leggauss(self.__deg)
-        #self.points, self.weights = np.polynomial.laguerre.laggauss(self.__deg)
         #self.points, self.weights = np.polynomial.chebyshev.chebgauss(self.__deg)
         self.bounds = (-1.0,1.0)
 
@@ -53,20 +75,16 @@ class gaussPoints(object):
 
 
 
-gaussObj=gaussPoints(30)
-gaussObj.transform(0.0,1.0)
-
+gaussObj=gaussPoints(200)
 evalFunc=lambda x: (func(x)-func(-x))/x
-start = time.time()
-vals = evalFunc(gaussObj.points)
 
-resGauss= prodSum(gaussObj.weights,vals)
+
+start = time.time()
+resGauss= integCauchy(func,1.0,gaussObj)
 end=time.time() - start
 print"resGauss: %s (time: %1.2e)"%(resGauss,end)
 
-
-eps=1e-8
 start = time.time()
-resQUADtrafo=integrate.quad(evalFunc,0,1)
+map(func,np.linspace(1,10,100))
 end=time.time() - start
-print"resQUADtrafo: %s (time: %1.2e)"%(resQUADtrafo,end)
+print"funcEval: %s rounds (time: %1.2e)"%(100,end)

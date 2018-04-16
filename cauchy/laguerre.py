@@ -8,15 +8,15 @@ def func(x):
     #time.sleep(0.01)
     if not isinstance(x,np.ndarray):
         x=np.array([x])
-    return np.sin(x) - np.cos(x)*np.exp(x)#+np.ones(len(x))
+    return np.sin(x)
 
-
+"""
 start = time.time()
 resQUAD = integrate.quad(func, -1, 1, weight='cauchy', wvar=0)
 end=time.time() - start
 
 print"resQUADcauchy: %s (time: %1.2e)"%(resQUAD,end)
-
+"""
 
 # Check against known result
 #print(2*special.sici(1)[0])
@@ -36,8 +36,8 @@ class gaussPoints(object):
         self.resetPoints()
 
     def resetPoints(self):
-        self.points, self.weights = np.polynomial.legendre.leggauss(self.__deg)
-        #self.points, self.weights = np.polynomial.laguerre.laggauss(self.__deg)
+        #self.points, self.weights = np.polynomial.legendre.leggauss(self.__deg)
+        self.points, self.weights = np.polynomial.laguerre.laggauss(self.__deg)
         #self.points, self.weights = np.polynomial.chebyshev.chebgauss(self.__deg)
         self.bounds = (-1.0,1.0)
 
@@ -53,12 +53,13 @@ class gaussPoints(object):
 
 
 
-gaussObj=gaussPoints(30)
-gaussObj.transform(0.0,1.0)
+gaussObj=gaussPoints(60)
+#gaussObj.transform(0.0,1.0)
 
-evalFunc=lambda x: (func(x)-func(-x))/x
+evalFunc=lambda x: x*np.exp(-x**2)#(func(x)-func(-x))/x
+integrand = lambda x:evalFunc(x)*np.exp(x)
 start = time.time()
-vals = evalFunc(gaussObj.points)
+vals = integrand(gaussObj.points)
 
 resGauss= prodSum(gaussObj.weights,vals)
 end=time.time() - start
@@ -67,6 +68,6 @@ print"resGauss: %s (time: %1.2e)"%(resGauss,end)
 
 eps=1e-8
 start = time.time()
-resQUADtrafo=integrate.quad(evalFunc,0,1)
+resQUADtrafo=integrate.quad(evalFunc,0,1000)
 end=time.time() - start
 print"resQUADtrafo: %s (time: %1.2e)"%(resQUADtrafo,end)
