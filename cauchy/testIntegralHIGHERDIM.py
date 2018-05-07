@@ -34,6 +34,7 @@ def integCauchy(fkt,bound,gauss=None,mode='quad'):
 
 
 
+
 startQUAD = time.time()
 resQUAD = [integrate.quad(lambda x: func(x)[index], -1, 1, weight='cauchy', wvar=0,epsrel=1e-4) for index in np.arange(16)]
 endQUAD=time.time() - startQUAD
@@ -54,20 +55,31 @@ def prodSum(*arrays):
 
 
 class gaussPoints(object):
-    def __init__(self,deg=5):
+    def __init__(self,deg=5,mode="gaussLeg"):
         self.__deg = deg
-        self.resetPoints()
+        self.mode=mode
+        self.__setPoints()
+        self.__resetPoints()
 
-    def resetPoints(self):
-        self.points, self.weights = np.polynomial.legendre.leggauss(self.__deg)
-        #self.points, self.weights = np.polynomial.chebyshev.chebgauss(self.__deg)
+    def __setPoints(self):
+        if self.mode=="gaussLeg":
+            polynomial=np.polynomial.legendre.leggauss
+        elif self.mode=="gaussCheb":
+            polynomial=np.polynomial.chebyshev.chebgauss
+        elif self.mode=="gaussLag":
+            polynomial=numpy.polynomial.laguerre.laggauss
+        else:
+            raise ValueError("<%s> is not a mode of gaussPoints!")
+
+        self.__initPoints, self.__initWeights=polynomial(self.__deg)
+
+    def __resetPoints(self):
+        self.points, self.weights = self.__initPoints,self.__initWeights
         self.bounds = (-1.0,1.0)
 
     def transform(self,low,up):
-        if not(self.bounds == (-1.0,1.0)):
-            self.resetPoints()
-        self.points = (up-low)/2.0*self.points + (up+low)/2.0
-        self.weights = (up-low)/2.0*self.weights
+        self.points = (up-low)/2.0*self.__initPoints + (up+low)/2.0
+        self.weights = (up-low)/2.0*self.__initWeights
         self.bounds = (low,up)
 
 
@@ -75,14 +87,18 @@ class gaussPoints(object):
 
 
 
-gaussObj=gaussPoints(200)
+gaussObj=gaussPoints(1000)
 evalFunc=lambda x: (func(x)-func(-x))/x
 
 
-startG = time.time()
-resGauss= integCauchy(func,1.0,gaussObj)
-endG=time.time() - startG
-print"resGauss: %s (time: %1.2e)"%(resGauss,endG)
+
+start = time.time()
+resGauss= integCauchy(func,1000.0,gaussObj)
+end=time.time() - start
+print"resGauss: %s (time: %1.2e)"%(resGauss,end)
+print"rel Err: %s"%(np.abs(np.pi-resGauss)/np.pi)
+
+
 
 start = time.time()
 map(func,np.linspace(1,10,100))
