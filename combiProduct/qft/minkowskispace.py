@@ -81,7 +81,7 @@ class MinkowskiVector(object):
 	def __getitem__(self,index):
 		return MinkowskiVector( map(lambda i: self.data[i][index] , [0,1,2,3] ) )
 		#return parray(self.data.__getitem__(index))
-		
+
 	def __mul__(self,other):
 		if isinstance(other,MinkowskiVector):
 			# Scalar Product of 2 MinkowskiVectors
@@ -166,12 +166,12 @@ class MinkowskiVector(object):
 		     m	= mass
 
 
-		self.zero	= self * self - m**2
+		zero	= self * self - m**2
 		#print massshell
 		#print abs(massshell)       < tolerance
 		#raw_input()
-		if m == 0:	return all(abs(self.zero) < tolerance       )
-		else:		return all(abs(self.zero) < tolerance * m**2)
+		if m == 0:	return all(abs(zero) < tolerance       )
+		else:		return all(abs(zero) < tolerance * m**2)
 
 	def conjugate(self):
 		return MinkowskiVector(conjugate(self.data))
@@ -222,19 +222,7 @@ class MinkowskiVector(object):
 
 
 if __name__ == '__main__':
-    
-    p=5.0
-    m=1e-7
-    
-    E=sqrt(p**2 + m**2)
-    
-    A=MinkowskiVector([E,0,0,p])
-    
-    
-    print A.isonshell(m)
-    print A.zero
 
-    """
 	P	= MinkowskiVector([2.354,1.112,0.1286,-0.73513])
 	Q	= MinkowskiVector([0.125,1.565,-1.564,10.73513])
 	print P.__class__
@@ -280,4 +268,3 @@ if __name__ == '__main__':
 	#print E2
 	#print E2.shape
 	#print E2.__class__
-    """

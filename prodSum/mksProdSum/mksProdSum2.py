@@ -38,31 +38,33 @@ if __name__=='__main__':
     testArr21 = np.array([qft.MinkowskiVector([1,0,0,0]),qft.MinkowskiVector([1,0,0,0]),qft.MinkowskiVector([1,0,0,0]),qft.MinkowskiVector([1,0,0,0])])
     testArr22 = np.array([qft.MinkowskiVector([1,0,0,0]),qft.MinkowskiVector([1,0,0,0]),qft.MinkowskiVector([1,0,0,0]),qft.MinkowskiVector([1,0,0,0])])
     testArr23 = np.array([qft.MinkowskiVector([1,0,0,0]),qft.MinkowskiVector([1,0,0,0]),qft.MinkowskiVector([1,0,0,0]),qft.MinkowskiVector([1,0,0,0])])
-    testArr24 = np.array([qft.MinkowskiVector([1,0,0,0]),qft.MinkowskiVector([1,0,0,0]),qft.MinkowskiVector([1,0,0,0]),qft.MinkowskiVector([1,0,0,0])])
+    testArr24 = np.array([qft.MinkowskiVector([2,0,0,0]),qft.MinkowskiVector([1,0,0,0]),qft.MinkowskiVector([1,0,0,0]),qft.MinkowskiVector([1,0,0,0])])
     testArr2 = np.array([testArr21,testArr22,testArr23,testArr24])
     
     start = T.time()
-    resOld = oldProd(testArr1,testArr2).reshape(4,4,16)
+    resOld = oldProd(testArr1,testArr2)#.reshape(4,4,16)
     end = T.time() - start
     print"resOld: %s\n\ttime: %1.2e"%(resOld,end)
+    print"resOld shape: %s"%(str(resOld.shape))
     
+    """
     start = T.time()
     prodResParray = 25*resOld
     end=T.time() - start
     print"prodParray: %s\n\ttime: %1.2e"%(prodResParray,end)
-    
-    
-    
+    """
+    """
     start = T.time()
     floatRes = np.asfarray(resOld)
     end=T.time() - start
     print"resFloat: %s\n\ttime: %1.2e"%(floatRes,end)
-    
-    
+    """
+    """
     start = T.time()
     prodResNP = 25*resOld
     end=T.time() - start
     print"prodResNP: %s\n\ttime: %1.2e"%(prodResNP,end)
+    """
     """
     start = T.time()
     resIter = iterProd(testArr1,testArr2)
@@ -71,9 +73,10 @@ if __name__=='__main__':
     """
     
     start = T.time()
-    resNumpy = numpyProd(testArr1,testArr2).reshape(4,4,16)
+    resNumpy = numpyProd(testArr1,testArr2)
     end = T.time() - start
     print"resNumpy: %s\n\ttime: %1.2e"%(resNumpy,end)
+    print"resNumpy shape: %s"%(str(resNumpy.shape))
     
     start = T.time()
     resNumpyOut = np.asfarray(numpyProdOuter(testArr1,testArr2))

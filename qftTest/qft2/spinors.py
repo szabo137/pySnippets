@@ -3,7 +3,7 @@ import sys,os
 
 
 from parray import *
-from minkowskispace import *
+from mks import *
 from numpy import *
 
 ### NME - spinors #################################################################
@@ -422,6 +422,8 @@ def SpinorU((p,m),s , eigenspinor = 'sigmaz'):
     from scipy import sign
 
     if not isinstance(p,MinkowskiVector):
+        print p
+        print type(p)
         p	= MinkowskiVector(p)
     else:
         pass
@@ -574,72 +576,3 @@ class gamma5(DiracMatrix):
 def spinaverage(M):
 	from numpy import sum
 	return sum(sum(M,axis=-1),axis=0) / 2.
-
-
-
-if __name__ == '__main__':
-	#Define on-shell momentum P
-	m  = 1.3
-	px = 2.23
-	py = 1.1
-	pz = -1.5*parray(linspace(1,3,100))
-	E  = sqrt(m**2 + px**2 + py**2 + pz**2)
-	P= MinkowskiVector([E,px,py,pz])
-	import time
-	rounds=5000
-	t1 = time.time()
-	for el in arange(rounds):
-		feyndagg(P)
-
-	t2=time.time()
-	print "time feyndagg (%s rounds): %s"%(rounds,str(t2-t1))
-
-	t1 = time.time()
-	for el in arange(rounds):
-		SpinorU((P,m),1,eigenspinor = 'sigmaz')
-
-	t2=time.time()
-	print "time SpinorU (%s rounds): %s"%(rounds,str(t2-t1))
-
-	t1 = time.time()
-	for el in arange(rounds):
-		SpinorUBar((P,m),1,eigenspinor = 'sigmaz')
-
-	t2=time.time()
-	print "time SpinorUBar (%s rounds): %s"%(rounds,str(t2-t1))
-
-    #u1		= SpinorU((P,m),1,eigenspinor = 'helicity')
-    #u2		= SpinorU((P,m),2,eigenspinor = 'helicity')
-    #ubar1	= SpinorUBar((P,m),1,eigenspinor = 'helicity')
-    #ubar2	= SpinorUBar((P,m),2,eigenspinor = 'helicity')
-
-    #v1		= SpinorV((P,m),1,eigenspinor = 'helicity')
-    #v2		= SpinorV((P,m),2,eigenspinor = 'helicity')
-    #vbar1	= SpinorVBar((P,m),1,eigenspinor = 'helicity')
-    #vbar2	= SpinorVBar((P,m),2,eigenspinor = 'helicity')
-
-
-    #TEST	= lambda X: all( abs(X.data) < 1e-14 )
-    #print vbar1*v1
-    #print vbar2*v1
-    #print vbar1*v2
-    #print vbar2*v2
-    #print ubar1*v1
-    #print ubar1*v2
-    #print ubar2*v1
-    #print ubar2*v2
-    #print vbar1*u1
-    #print vbar1*u2
-    #print vbar2*u1
-    #print vbar2*u2
-    #print ubar1*u1
-    #print ubar2*u1
-	"""
-    print TEST( (feyndagg(P)+m)*v1 )
-    print TEST( (feyndagg(P)+m)*v2 )
-    print TEST( vbar1*(feyndagg(P)+m) )
-    print TEST( vbar2*(feyndagg(P)+m) )
-    print TEST( v1*vbar1 + v2*vbar2 - (feyndagg(P) - m)  )
-
-    print TEST( u1*ubar1 + u2*ubar2 - v1*vbar1 - v2*vbar2 - 2*m)
-	"""

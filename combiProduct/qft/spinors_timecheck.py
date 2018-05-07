@@ -5,6 +5,7 @@ import sys,os
 from parray import *
 from minkowskispace import *
 from numpy import *
+from scipy import sign
 
 ### NME - spinors #################################################################
 # v1.0:	  2010-12-13	Daniel Seipt:
@@ -36,15 +37,6 @@ def pardot(left,right):
 		leftind	= (slice(None),) + (None,) + (slice(None),)*(leftN-1)
 		#rightind	= (None,) + (slice(None),)*rightN
 		return sum( left[leftind] * right , axis = 0 )
-
-
-def feyndagg(P):
-	gamma=GammaMatrix()
-	if isinstance(P,MinkowskiVector):
-		M		= gamma[0]*parray(P._0()) - ( gamma[1]*parray(P._1()) + gamma[2]*parray(P._2()) + gamma[3]*parray(P._3()) )
-		return M
-	else:
-		raise TypeError,'No MinkowskiVector'
 
 
 
@@ -409,17 +401,54 @@ class DiracMatrix(object):
 	    return self.data
 
 	def __getitem__(self,index):
-	    #print index
+	    print index
 	    return self.data.__getitem__(index)
 
+class GammaMatrix(object):
 
+    def __init__(self):
+
+	gamma0	= array([ [ 1, 0, 0, 0],
+                    [ 0, 1, 0, 0],
+                    [ 0, 0,-1, 0],
+                    [ 0, 0, 0,-1]])
+
+	gamma1	= array([ [ 0, 0, 0,-1],
+                    [ 0, 0,-1, 0],
+                    [ 0, 1, 0, 0],
+                    [ 1, 0, 0, 0]])
+
+	gamma2	= array([ [  0, 0 , 0 , 1j],
+                    [  0, 0 ,-1j,  0],
+                    [  0,-1j, 0 ,  0],
+                    [ 1j, 0 , 0 ,  0]])
+
+	gamma3	= array([ [ 0, 0,-1, 0],
+                    [ 0, 0, 0, 1],
+                    [ 1, 0, 0, 0],
+                    [ 0,-1, 0, 0]])
+
+	self.gammavec	= (DiracMatrix(gamma0),DiracMatrix(gamma1),DiracMatrix(gamma2),DiracMatrix(gamma3))
+
+    def __call__(self):
+	return self.gammavec
+
+    def __getitem__(self,index):
+	return self.gammavec[index]
+
+gamma=GammaMatrix()
+def feyndagg(P):
+	if isinstance(P,MinkowskiVector):
+		M		= gamma[0]*parray(P._0()) - ( gamma[1]*parray(P._1()) + gamma[2]*parray(P._2()) + gamma[3]*parray(P._3()) )
+		return M
+	else:
+		raise TypeError,'No MinkowskiVector'
 
 
 
 
 
 def SpinorU((p,m),s , eigenspinor = 'sigmaz'):
-    from scipy import sign
 
     if not isinstance(p,MinkowskiVector):
         p	= MinkowskiVector(p)
@@ -466,12 +495,11 @@ def SpinorU((p,m),s , eigenspinor = 'sigmaz'):
 def SpinorUBar((p,m),s , eigenspinor = 'sigmaz' ):
 
 	u		= SpinorU((p,m),s , eigenspinor ).data
-	gamma0		= GammaMatrix()[0]
+	gamma0		= gamma[0]
 	return BiSpinorBar(conjugate(u)) * gamma0
 
 
 def SpinorV((p,m),s , eigenspinor = 'sigmaz'):
-    from scipy import sign
 
     if not isinstance(p,MinkowskiVector):
         p = MinkowskiVector(p)
@@ -519,42 +547,11 @@ def SpinorV((p,m),s , eigenspinor = 'sigmaz'):
 def SpinorVBar((p,m),s , eigenspinor = 'sigmaz' ):
 
 	v		= SpinorV((p,m),s , eigenspinor ).data
-	gamma0		= GammaMatrix()[0]
+	gamma0		= gamma[0]
 	return BiSpinorBar(conjugate(v)) * gamma0
 
 
 
-class GammaMatrix(object):
-
-    def __init__(self):
-
-	gamma0	= array([ [ 1, 0, 0, 0],
-                    [ 0, 1, 0, 0],
-                    [ 0, 0,-1, 0],
-                    [ 0, 0, 0,-1]])
-
-	gamma1	= array([ [ 0, 0, 0,-1],
-                    [ 0, 0,-1, 0],
-                    [ 0, 1, 0, 0],
-                    [ 1, 0, 0, 0]])
-
-	gamma2	= array([ [  0, 0 , 0 , 1j],
-                    [  0, 0 ,-1j,  0],
-                    [  0,-1j, 0 ,  0],
-                    [ 1j, 0 , 0 ,  0]])
-
-	gamma3	= array([ [ 0, 0,-1, 0],
-                    [ 0, 0, 0, 1],
-                    [ 1, 0, 0, 0],
-                    [ 0,-1, 0, 0]])
-
-	self.gammavec	= np.array([DiracMatrix(gamma0),DiracMatrix(gamma1),DiracMatrix(gamma2),DiracMatrix(gamma3)])
-
-    def __call__(self):
-	return self.gammavec
-
-    def __getitem__(self,index):
-	return self.gammavec[index]
 
 
 
@@ -572,7 +569,7 @@ class gamma5(DiracMatrix):
 
 
 def spinaverage(M):
-	from numpy import sum
+	#from numpy import sum
 	return sum(sum(M,axis=-1),axis=0) / 2.
 
 
@@ -586,7 +583,7 @@ if __name__ == '__main__':
 	E  = sqrt(m**2 + px**2 + py**2 + pz**2)
 	P= MinkowskiVector([E,px,py,pz])
 	import time
-	rounds=5000
+	rounds=1000
 	t1 = time.time()
 	for el in arange(rounds):
 		feyndagg(P)
@@ -596,14 +593,14 @@ if __name__ == '__main__':
 
 	t1 = time.time()
 	for el in arange(rounds):
-		SpinorU((P,m),1,eigenspinor = 'sigmaz')
+		SpinorU((P,m),1,eigenspinor = 'helicity')
 
 	t2=time.time()
 	print "time SpinorU (%s rounds): %s"%(rounds,str(t2-t1))
 
 	t1 = time.time()
 	for el in arange(rounds):
-		SpinorUBar((P,m),1,eigenspinor = 'sigmaz')
+		SpinorUBar((P,m),1,eigenspinor = 'helicity')
 
 	t2=time.time()
 	print "time SpinorUBar (%s rounds): %s"%(rounds,str(t2-t1))

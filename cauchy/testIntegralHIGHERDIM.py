@@ -7,7 +7,7 @@ import math
 def func(x):
     #print "ping"
     #time.sleep(0.01)
-    return np.array([math.sin(x) for item in np.arange(16)])
+    return np.array([np.sin(x)*np.exp(1j*(x+np.sin(x)**2)) for item in np.arange(16)])
 
 
 def integCauchy(fkt,bound,gauss=None,mode='quad'):
@@ -34,11 +34,11 @@ def integCauchy(fkt,bound,gauss=None,mode='quad'):
 
 
 
-start = time.time()
-#resQUAD = integrate.quad(func, -1, 1, weight='cauchy', wvar=0)
-end=time.time() - start
+startQUAD = time.time()
+resQUAD = [integrate.quad(lambda x: func(x)[index], -1, 1, weight='cauchy', wvar=0,epsrel=1e-4) for index in np.arange(16)]
+endQUAD=time.time() - startQUAD
 
-#print"resQUAD: %s (time: %1.2e)"%(resQUAD,end)
+print"resQUAD: %s (time: %1.2e)"%(resQUAD,endQUAD)
 
 
 # Check against known result
@@ -79,10 +79,10 @@ gaussObj=gaussPoints(200)
 evalFunc=lambda x: (func(x)-func(-x))/x
 
 
-start = time.time()
+startG = time.time()
 resGauss= integCauchy(func,1.0,gaussObj)
-end=time.time() - start
-print"resGauss: %s (time: %1.2e)"%(resGauss,end)
+endG=time.time() - startG
+print"resGauss: %s (time: %1.2e)"%(resGauss,endG)
 
 start = time.time()
 map(func,np.linspace(1,10,100))

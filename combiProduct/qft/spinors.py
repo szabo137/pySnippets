@@ -409,7 +409,7 @@ class DiracMatrix(object):
 	    return self.data
 
 	def __getitem__(self,index):
-	    #print index
+	    print index
 	    return self.data.__getitem__(index)
 
 
@@ -548,7 +548,7 @@ class GammaMatrix(object):
                     [ 1, 0, 0, 0],
                     [ 0,-1, 0, 0]])
 
-	self.gammavec	= np.array([DiracMatrix(gamma0),DiracMatrix(gamma1),DiracMatrix(gamma2),DiracMatrix(gamma3)])
+	self.gammavec	= (DiracMatrix(gamma0),DiracMatrix(gamma1),DiracMatrix(gamma2),DiracMatrix(gamma3))
 
     def __call__(self):
 	return self.gammavec
@@ -596,14 +596,14 @@ if __name__ == '__main__':
 
 	t1 = time.time()
 	for el in arange(rounds):
-		SpinorU((P,m),1,eigenspinor = 'sigmaz')
+		SpinorU((P,m),1,eigenspinor = 'helicity')
 
 	t2=time.time()
 	print "time SpinorU (%s rounds): %s"%(rounds,str(t2-t1))
 
 	t1 = time.time()
 	for el in arange(rounds):
-		SpinorUBar((P,m),1,eigenspinor = 'sigmaz')
+		SpinorUBar((P,m),1,eigenspinor = 'helicity')
 
 	t2=time.time()
 	print "time SpinorUBar (%s rounds): %s"%(rounds,str(t2-t1))
