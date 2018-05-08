@@ -1,0 +1,9 @@
+\select@language {english}
+\contentsline {chapter}{\numberline {1}Example}{1}{chapter.1}
+\contentsline {paragraph}{Notes}{2}{paragraph*.4}
+\contentsline {paragraph}{References}{2}{paragraph*.5}
+\contentsline {paragraph}{Examples}{2}{paragraph*.8}
+\contentsline {chapter}{\numberline {2}subModule}{3}{chapter.2}
+\contentsline {chapter}{\numberline {3}Indices and tables}{5}{chapter.3}
+\contentsline {chapter}{Bibliography}{7}{chapter*.10}
+\contentsline {chapter}{Python Module Index}{9}{section*.12}
