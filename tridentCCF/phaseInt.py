@@ -4,6 +4,9 @@ module to compute the general phase integral in CCF with airy functions
 import numpy as np
 from scipy.special import airy
 import matplotlib.pylab as plt
+from cQuad import cQuad
+a=200
+
 
 def b(e,c1,c2):
     return 2.0*np.pi*np.exp(1j*e)/((3.0*c2)**(1.0/3.0))
@@ -44,8 +47,22 @@ def f(rStar):
     return (rStar +15.2666666667
 )/4.0970436
 
+
+def integrandB1ccf(x,c1,c2):
+    return x*np.exp(1j*c1*x**2/2.0 + 1j*c2*x**3/3.0)
+
+def integB1ccf(r,c1,c2):
+    func = lambda x: integrandB1ccf(x,c1,c2)
+    args = np.linspace(-a,a,10000)
+    vals = func(args)
+    res = np.fft.fft(vals)
+    
+    return res
+
+
 if __name__=='__main__':
     
+    """
     c1=-2.92894124925
     c2=0.976313749749
     
@@ -74,3 +91,10 @@ if __name__=='__main__':
     print funcB(0)
     plt.legend()
     plt.show()
+    """
+    #fft check
+    c1=-2.92894124925
+    c2=0.976313749749
+    #print B1ccf(1.3,c1,c2)
+    args = np.linspace(-a,a,10000)
+    integB1ccf(0.0,c1,c2)
