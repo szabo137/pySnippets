@@ -29,7 +29,7 @@ def B1ccf(r,c1,c2):
     prefac = b(et,c1,c2)
     arg = mu(r,c1,c2)
     fac1 = c1/3.0/c2*airy(arg)[0]
-    fac2 =1j/((3.0*c2)**(1.0/3.0))*airy(arg)[1] 
+    fac2 =1j/((3.0*c2)**(1.0/3.0))*airy(arg)[1]
     return -prefac*(fac1 + fac2)
 
 def B2ccf(r,c1,c2):
@@ -37,35 +37,24 @@ def B2ccf(r,c1,c2):
     prefac = b(et,c1,c2)
     arg = mu(r,c1,c2)
     fac1 = ((c1/3.0/c2)**2 - arg/((3.0*c2)**(2.0/3.0)))*airy(arg)[0]
-    fac2 =1j*2.0*c1/((3.0*c2)**(4.0/3.0))*airy(arg)[1] 
+    fac2 =1j*2.0*c1/((3.0*c2)**(4.0/3.0))*airy(arg)[1]
     return prefac*(fac1 + fac2)
 
 def B0reg(r,c1,c2):
-    return -1.0/r*(2.0*c1*B1ccf(r,c1,c2) + 3.0*c2*B2ccf(r,c1,c2))
+    return 2.0*np.pi*(r==0)-(r!=0)*1.0/r*(2.0*c1*B1ccf(r,c1,c2) + 3.0*c2*B2ccf(r,c1,c2))
 
 def f(rStar):
     return (rStar +15.2666666667
 )/4.0970436
 
 
-def integrandB1ccf(x,c1,c2):
-    return x*np.exp(1j*c1*x**2/2.0 + 1j*c2*x**3/3.0)
-
-def integB1ccf(r,c1,c2):
-    func = lambda x: integrandB1ccf(x,c1,c2)
-    args = np.linspace(-a,a,10000)
-    vals = func(args)
-    res = np.fft.fft(vals)
-    
-    return res
-
 
 if __name__=='__main__':
-    
-    """
+
+
     c1=-2.92894124925
     c2=0.976313749749
-    
+    """
     args = np.linspace(1e-8,30,2000)
     print args.shape
     func0=lambda x: B0ccf(f(x),0.976313749749,0.325437916583)*B1ccf(6.89928383156-f(x),-2.92894124925,0.976313749749)
@@ -83,7 +72,7 @@ if __name__=='__main__':
     print vals0reg/vals0
     plt.plot(args,vals0,label='analytic')
     plt.plot(args,vals0reg,'-.',label='reg.')
-    
+
     funcR=lambda x: 1/x
     #plt.plot(args,funcR(args),'.')
     funcB=lambda x: (2.0*c1*B1ccf(x,c1,c2) + 3.0*c2*B2ccf(x,c1,c2))
@@ -92,9 +81,5 @@ if __name__=='__main__':
     plt.legend()
     plt.show()
     """
-    #fft check
-    c1=-2.92894124925
-    c2=0.976313749749
-    #print B1ccf(1.3,c1,c2)
-    args = np.linspace(-a,a,10000)
-    integB1ccf(0.0,c1,c2)
+    print B0ccf(1e-6,c1,c2)
+    print B0reg(0,c1,c2)

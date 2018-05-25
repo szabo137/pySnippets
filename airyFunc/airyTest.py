@@ -21,5 +21,3 @@ plt.plot(args,vals)
 plt.title("Airy function - full time: %1.2e s - avg. time: %1.2e s (%s rounds)"%(end,end/rounds,rounds))
 
 plt.show()
-
-
