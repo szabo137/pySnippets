@@ -1,3 +1,4 @@
+# -*- coding: utf-8 -*-
 """
 The kinematics module
 =====================
@@ -33,7 +34,6 @@ maybe: set -p as a momentum in kinClass or check where the - need to be!!!
 
 import numpy as np
 import qft
-import settings
 import lightCone
 from kinutility import *
 
@@ -53,13 +53,28 @@ pol2=BGpolarisationBase(2)
 class alpha(object):
     def __init__(self,mom,config):
         """
+        The alpha class
+        ---------------
         Calculation of
-        $$\\alpha _i = 2e(\\frac{p_a a_i}{2 k p_a} - \\frac{p_b a_i}{2 k p_b})$$
-        with $i=1,2$ and
-        $$alpha_3 = m^2a_0^2((2kp_a)^{-1} + (2kp_b))$$.
+        math..
+            \\alpha _{1,2} = 2ma_0(\\frac{p_a \\epsilon_{1,2}}{2 k p_a} - \\frac{p_b \\epsilon_{1,2}}{2 k p_b})
+        and
+        math..
+            \\alpha_3 = m^2a_0^2((2kp_a)^{-1} + (2kp_b)).
         Signs of $p_a, p_b$ is chosen from Breit-Wheeler-Part.
-
-        mom = [k,pa,pb]
+        
+        Parameters:
+        -----------
+        mom: array_like
+            A 3-array which contains the momenta as qft.minkowskiVector.
+            The format is mom = [k,pa,pb].
+        config: dict
+            configuration dictionary which contains at least a0 and mass.
+        
+        Returns:
+        --------
+        python callable:
+            A function which provides the alphas (internal terms are saved).
         """
         #print "pol1: %s"%pol1
         #print "pol2: %s"%pol2

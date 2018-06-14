@@ -2,11 +2,11 @@
 this class provides the vertexFunctions
 """
 import numpy as np
-from sfTrident.phaseIntegral import phaseIntegral as phaseIntegral
-from sfTrident.phaseIntegral import prodSum
-from sfTrident.current import currentClass
-from sfTrident.kinematics import photoNumBW, rFromRstar
-from sfTrident.math.cQuad import cQuad
+from phaseIntegral import phaseIntegral as phaseIntegral
+from phaseIntegral import prodSum
+from current import currentClass
+from kinematics import photoNumBW, rFromRstar
+from math.cQuad import cQuad
 
 
 def ProdSingle(arr1,arr2):

@@ -9,7 +9,7 @@ spinor order: 00,11,01,10
 
 """
 import numpy as np
-import sfTrident.qft as qft
+import qft
 from kinutility import laserPolarisation
 gamma=qft.GammaMatrix()
 #print "is there feyndagg: %s"%('feyndagg' in dir(qft))

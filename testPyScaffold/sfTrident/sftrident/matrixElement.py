@@ -13,9 +13,9 @@ kinObj.photoNum: s_bw, r_c, s_bwx, r_cx <- onshell!
 """
 import numpy as np
 #import copy
-from sfTrident.phaseIntegral import prodSum,gaussPoints # improve!!
+from phaseIntegral import prodSum,gaussPoints # improve!!
 #from sfTrident.current.currentClass import currentClass
-from sfTrident.kinematics import kinClass,photoNumBW
+from kinematics import kinClass,photoNumBW
 from vertex import vertexFunctionCombine as vertexFunction
 
 #from scipy.integrate import quad
