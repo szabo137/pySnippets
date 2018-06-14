@@ -1,0 +1,5 @@
+# Add your requirements here like:
+numpy>=1.12.1
+scipy>=0.19.0
+pathos>=0.2.1
+numdifftools>=0.9.20
