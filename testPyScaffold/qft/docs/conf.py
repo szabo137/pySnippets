@@ -10,11 +10,15 @@
 
 import sys
 import os
-sys.path.insert(0, os.path.abspath('../../sfTrident'))
+import inspect
+import shutil
+
+__location__ = os.path.join(os.getcwd(), os.path.dirname(
+    inspect.getfile(inspect.currentframe())))
 # If extensions (or modules to document with autodoc) are in another directory,
 # add these directories to sys.path here. If the directory is relative to the
 # documentation root, use os.path.abspath to make it absolute, like shown here.
-# sys.path.insert(0, os.path.abspath('.'))
+sys.path.insert(0, os.path.join(__location__, '../qft'))
 
 # -- Hack for ReadTheDocs ------------------------------------------------------
 # This hack is necessary since RTD does not issue `sphinx-apidoc` before running
@@ -32,7 +36,7 @@ if on_rtd:
         inspect.getfile(inspect.currentframe())))
 
     output_dir = os.path.join(__location__, "../docs/api")
-    module_dir = os.path.join(__location__, "../sftrident")
+    module_dir = os.path.join(__location__, "../qft")
     cmd_line_template = "sphinx-apidoc -f -o {outputdir} {moduledir}"
     cmd_line = cmd_line_template.format(outputdir=output_dir, moduledir=module_dir)
     apidoc.main(cmd_line.split(" "))
@@ -47,7 +51,6 @@ if on_rtd:
 extensions = ['sphinx.ext.autodoc', 'sphinx.ext.intersphinx', 'sphinx.ext.todo',
               'sphinx.ext.autosummary', 'sphinx.ext.viewcode', 'sphinx.ext.coverage',
               'sphinx.ext.doctest', 'sphinx.ext.ifconfig', 'sphinx.ext.mathjax',
-              'numpydoc',
               'sphinx.ext.napoleon']
 
 # Add any paths that contain templates here, relative to this directory.
@@ -63,8 +66,8 @@ source_suffix = '.rst'
 master_doc = 'index'
 
 # General information about the project.
-project = u'sfTrident'
-copyright = u'2018, Uwe Hernandez Acosta'
+project = u'qft'
+copyright = u'2018, uha (mac)'
 
 # The version info for the project you're documenting, acts as replacement for
 # |version| and |release|, also used in various other places throughout the
@@ -87,7 +90,6 @@ release = ''  # Is set by calling `setup.py docs`
 
 # List of patterns, relative to source directory, that match files and
 # directories to ignore when looking for source files.
-#exclude_patterns = ['_build','api/sftrident.qft.rst']
 exclude_patterns = ['_build']
 
 # The reST default role (used for this markup: `text`) to use for all documents.
@@ -118,7 +120,7 @@ pygments_style = 'sphinx'
 
 # The theme to use for HTML and HTML Help pages.  See the documentation for
 # a list of builtin themes.
-html_theme = 'default'
+html_theme = 'alabaster'
 
 # Theme options are theme-specific and customize the look and feel of a theme
 # further.  For a list of options available for each theme, see the
@@ -131,7 +133,7 @@ html_theme = 'default'
 # The name for this set of Sphinx documents.  If None, it defaults to
 # "<project> v<release> documentation".
 try:
-    from sftrident import __version__ as version
+    from qft import __version__ as version
 except ImportError:
     pass
 else:
@@ -196,7 +198,7 @@ html_static_path = ['_static']
 # html_file_suffix = None
 
 # Output file base name for HTML help builder.
-htmlhelp_basename = 'sftrident-doc'
+htmlhelp_basename = 'qft-doc'
 
 
 # -- Options for LaTeX output --------------------------------------------------
@@ -215,15 +217,9 @@ latex_elements = {
 # Grouping the document tree into LaTeX files. List of tuples
 # (source start file, target name, title, author, documentclass [howto/manual]).
 latex_documents = [
-  ('index', 'user_guide.tex', u'sfTrident Documentation',
+  ('index', 'user_guide.tex', u'qft Documentation',
    u'uha (mac)', 'manual'),
 ]
-
-
-#makes fancy header:  Lenny, Glenn, Conny, Rejne and Bjornstrup
-latex_elements = {"fncychap":'\\usepackage[Bjornstrup]{fncychap}'}
-
-
 
 # The name of an image file (relative to this directory) to place at the top of
 # the title page.

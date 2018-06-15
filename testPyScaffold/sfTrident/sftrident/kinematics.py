@@ -51,31 +51,34 @@ pol1=BGpolarisationBase(1)
 pol2=BGpolarisationBase(2)
 
 class alpha(object):
+    r"""Calculation of kinematic factors.
+
+    Parameters
+    ----------
+    mom : array_like
+        A 3-array which contains the momenta as qft.minkowskiVector.
+        The format is mom = [k,pa,pb].
+    config : dict
+        configuration dictionary which contains at least a0 and mass.
+
+    Returns
+    -------
+    python callable
+        A function which provides the alphas (internal terms are saved).
+
+    Notes
+    -----
+    Calculation of
+
+    .. math:: \alpha _{1,2} = 2ma_0\left(\frac{p_a \epsilon_{1,2}}{2 k p_a} - \frac{p_b \epsilon_{1,2}}{2 k p_b}\right)
+
+    and
+
+    .. math:: \alpha_3 = m^2a_0^2\left(\frac{1}{2kp_a} + \frac{1}{2kp_b}\right).
+
+    Signs of $p_a, p_b$ is chosen from Breit-Wheeler-Part.
+    """
     def __init__(self,mom,config):
-        """
-        The alpha class
-        ---------------
-        Calculation of
-        math..
-            \\alpha _{1,2} = 2ma_0(\\frac{p_a \\epsilon_{1,2}}{2 k p_a} - \\frac{p_b \\epsilon_{1,2}}{2 k p_b})
-        and
-        math..
-            \\alpha_3 = m^2a_0^2((2kp_a)^{-1} + (2kp_b)).
-        Signs of $p_a, p_b$ is chosen from Breit-Wheeler-Part.
-        
-        Parameters:
-        -----------
-        mom: array_like
-            A 3-array which contains the momenta as qft.minkowskiVector.
-            The format is mom = [k,pa,pb].
-        config: dict
-            configuration dictionary which contains at least a0 and mass.
-        
-        Returns:
-        --------
-        python callable:
-            A function which provides the alphas (internal terms are saved).
-        """
         #print "pol1: %s"%pol1
         #print "pol2: %s"%pol2
         self.__a0 = config['a0']
@@ -96,6 +99,18 @@ class alpha(object):
         #print"term2 a2: %s"%((self.__pb*pol2)/(2.0*self.__pbk))
 
     def __call__(self,item):
+        r""" function call of alpha object
+
+        Parameters
+        ----------
+        item : integer
+            index of alpha
+
+        Returns
+        -------
+        float
+            the value of alpha(item)
+        """
         if item==1:
             #print "calc alpha1"
             #print "a_1: %s"%(2.0*((self.__pa*pol1)/(2.0*self.__pak) - (self.__pb*pol1)/(2.0*self.__pbk))*self.__a0*self.__me)
