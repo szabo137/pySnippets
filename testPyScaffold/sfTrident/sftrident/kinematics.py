@@ -110,6 +110,11 @@ class alpha(object):
         -------
         float
             the value of alpha(item)
+
+        Exceptions
+        ----------
+        ValueError
+            <item> not in (1,2,3)
         """
         if item==1:
             #print "calc alpha1"
