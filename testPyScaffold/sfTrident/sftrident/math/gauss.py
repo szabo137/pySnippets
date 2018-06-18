@@ -9,6 +9,8 @@ Types
  - gauss chebychev
  - gauss laguerre
 """
+import numpy as np
+
 
 class gaussPoints(object):
     def __init__(self,deg=5,mode="gaussLeg"):
