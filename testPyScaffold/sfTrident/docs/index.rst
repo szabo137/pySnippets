@@ -45,13 +45,13 @@ Contents
 
 .. toctree::
    :maxdepth: 2
-   
+
    src/overview
    License <license>
    Authors <authors>
    Changelog <changes>
    Module Reference <api/modules>
-   
+
 
 
 Indices and tables
@@ -60,3 +60,8 @@ Indices and tables
 * :ref:`genindex`
 * :ref:`modindex`
 * :ref:`search`
+
+
+Todo
+====
+.. todolist::

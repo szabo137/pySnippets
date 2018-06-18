@@ -12,18 +12,68 @@ import qft as qft
 
 
 def laserOmega(ss):
+    """
+    lab energy of background photon from cms energy
+
+    Parameters
+    ----------
+    ss : array_like
+        center-of-momentum energy of the inital particles (one photon)
+
+    Returns
+    -------
+    array_like
+        energy of the background photon in the electron restsystem
+    """
     return (ss**2 - 1)/(2.0)
 
 def momPlus(momX,momY,momMinus):
+    """plus component of onshell momentum
+
+    Parameters
+    ----------
+    momX : float
+        x component of the momentum
+    momY : float
+        y component of the momentum
+    momMinus : float
+        minus component of the momentum
+
+    Returns
+    -------
+    float
+        plus component of the momentum
+
+    Notes
+    -----
+    Uses the onshell relation with unit mass
+
+    .. math:: p_\mu p^\mu = 1
+
+    """
     return (momX**2 + momY**2 + 1)/(4.0*momMinus)
 
 def momLaser(ss):
-    """
+    r"""
     momentum initial laser photon k
 
-    belong z axes
-    """
+    Parameters
+    ----------
+    ss : float
+        center-of-momentum energy of the inital particles (single photon)
 
+    Returns
+    -------
+    qft.MinkowskiVector
+        momentum of the inital background photon (electron rest system)
+
+    Notes
+    -----
+    The momentum belongs to the z axis:
+
+    .. math:: \left(k^\mu\right) = \left(w(s),0,0,w(s)\right)
+
+    """
     omega = laserOmega(ss)
     return qft.MinkowskiVector([omega,0,0,omega])
 
@@ -31,13 +81,32 @@ def momInitElek():
     """
     momentum initial electron p
 
-    rest system
+    Parameters
+    ----------
+    None
+
+    Returns
+    -------
+    qft.MinkowskiVector
+        momentum of inital electron (rest system)
+
+    Notes
+    -----
+    Uses unity mass:
+
+    .. math:: \left(p^\mu\right)=(1,0,0,0)
     """
     return qft.MinkowskiVector([1,0,0,0])
 
 def momFinalElec1(p2x,p2y,p2minus):
     """
     momentum final electron no. 1: p_2
+
+    Parameters
+    ----------
+    p2x : float
+        x component of the momentum
+
     """
     p2plus = momPlus(p2x,p2y,p2minus)
     return qft.MinkowskiVector([p2plus + p2minus,p2x,p2y,p2plus - p2minus])
