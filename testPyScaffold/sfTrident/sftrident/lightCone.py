@@ -1,8 +1,9 @@
 """
 lib for light cone coordinate formulation of momenta
 
-kinPara:
-ss,p2x,p2y,p2minus,p3x,p3y,p3minus
+Notes
+-----
+the kinparas are: ss,p2x,p2y,p2minus,p3x,p3y,p3minus
 
 TODO:
     -   implement preFac in getKin
@@ -24,6 +25,7 @@ def laserOmega(ss):
     -------
     array_like
         energy of the background photon in the electron restsystem
+    
     """
     return (ss**2 - 1)/(2.0)
 
@@ -78,7 +80,7 @@ def momLaser(ss):
     return qft.MinkowskiVector([omega,0,0,omega])
 
 def momInitElek():
-    """
+    r"""
     momentum initial electron p
 
     Parameters
@@ -94,7 +96,8 @@ def momInitElek():
     -----
     Uses unity mass:
 
-    .. math:: \left(p^\mu\right)=(1,0,0,0)
+    .. math:: \left(p^\mu \right) = (1,0,0,0)
+    
     """
     return qft.MinkowskiVector([1,0,0,0])
 

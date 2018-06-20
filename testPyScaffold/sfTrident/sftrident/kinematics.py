@@ -31,11 +31,15 @@ todo:
 
 maybe: set -p as a momentum in kinClass or check where the - need to be!!!
 """
+__all__=['alpha','kinClass']
 
 import numpy as np
 import qft
 import lightCone
 from kinutility import *
+
+
+
 
 modeDict={
     'bw': [[0,3,4],[2,3],0],#k,p2,p3; ubar2,v3
@@ -61,10 +65,10 @@ class alpha(object):
     config : dict
         configuration dictionary which contains at least a0 and mass.
 
-    Returns
-    -------
-    python callable
-        A function which provides the alphas (internal terms are saved).
+    Methodes
+    --------
+    __call__(item)
+        represents the kinemtatic functions alpha
 
     Notes
     -----
@@ -111,8 +115,8 @@ class alpha(object):
         float
             the value of alpha(item)
 
-        Exceptions
-        ----------
+        Raises
+        ------
         ValueError
             <item> not in (1,2,3)
         """
@@ -132,6 +136,55 @@ class alpha(object):
 
 
 class kinClass(object):
+    r""" Calculation of the full kinematic.
+    
+    Parameters
+    ----------
+    None
+    
+    Attributes
+    ----------
+    physArea : boolian
+        condition if the given parameter set is in the physical phase space
+        (requires evalKin(kinPara) first)
+
+    preFac : list
+        contains all prefactors for a given parameter set
+    
+    
+    Methods
+    -------
+    evalKin(kinPara)
+        calculation of the full kinemtatik for given parameter set
+    
+    getMomenta(mode)
+        represents all momenta of given mode
+    
+    getSpinors(mode)
+        represents all spinors of given mode
+        
+    getAlpha(mode)
+        represents all alpha of given mode
+        
+    getPhotoNumONSHELL(mode)
+        represents the onshell photo numbers of given mode
+    
+    Notes
+    -----
+        -   the modes are 
+            'bw' for Breit-Wheeler-,
+            'c' for Compton-,
+            'bwx' for Breit-Wheeler-excange-,
+            'cx' for Compton-exchange part.
+            'full' returns the full set
+        -   the prefacs are
+            '0' for direct onshell,
+            '1' for exchange onshell,
+            '2' for direct offshell,
+            '3' for exchange offshell
+            matrix element. 
+            The prefac '5' is rate prefac.
+    """
     def __init__(self,config=None):
         self.__config = config
         self.__kinOutInit()
