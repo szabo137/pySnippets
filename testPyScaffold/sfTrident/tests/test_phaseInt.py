@@ -1,17 +1,12 @@
 """
 test env for phaseIntClass
-
-todo:
-    -   change alphaClass to system
-    -   calculation of B1,...,B3 from tobPI
-    -   write tests
 """
 import unittest
 import numpy as np
 import time
 
 import sftrident.qft as qft
-import sftrident.phaseIntegral as phase
+import sftrident as phase
 from sftrident.kinematics import alpha
 
 from tobiasLib.phaseInt import phaseIntFromTob as tobPI

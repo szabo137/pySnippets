@@ -2,34 +2,27 @@
 """
 The kinematics module
 =====================
+This module contains the <kinClass> to build the whole kinematic for given parameter set and the <alphaClass> to build the kinematic factors from the set of momenta.
 
-alphaClass
-----------
 
-contains class of kinematic prefactors alpha1,alpha2,alpha3
-
-todo:
-    -   scaling of polarisation! -> a_i!=pol_i
-
-kinClass
---------
-
-contains all kinematic for trident process
-
+Notes
+-----
 getKin Format:
 
-[physArea,np.array(allMom, len=5),preFac]
-momenta = k,-p,p1,p2,p3
-spinors = u,ubar1,ubar2,v3
+.. code-block:: python
 
-todo:
+    kinOutput = [physArea,np.array(allMom, len=5),preFac]
+    momenta = k,-p,p1,p2,p3
+    spinors = u,ubar1,ubar2,v3
+
+.. todo::
+    -   scaling of polarisation! -> a_i!=pol_i
     -   improve the __evalAlphas function
     -   set momenta on (k,p,p1,p2,p3) -> check eval spinors
     -   set default for config
     -   build function: getMomenta, getSpinor, ... as functions of mode, which
         returns only the quantity of the given mode -> the status of kinObj will be unchanged
-
-maybe: set -p as a momentum in kinClass or check where the - need to be!!!
+    -   maybe: set -p as a momentum in kinClass or check where the
 """
 __all__=['alpha','kinClass']
 
@@ -137,11 +130,11 @@ class alpha(object):
 
 class kinClass(object):
     r""" Calculation of the full kinematic.
-    
+
     Parameters
     ----------
     None
-    
+
     Attributes
     ----------
     physArea : boolian
@@ -150,28 +143,28 @@ class kinClass(object):
 
     preFac : list
         contains all prefactors for a given parameter set
-    
-    
+
+
     Methods
     -------
     evalKin(kinPara)
         calculation of the full kinemtatik for given parameter set
-    
+
     getMomenta(mode)
         represents all momenta of given mode
-    
+
     getSpinors(mode)
         represents all spinors of given mode
-        
+
     getAlpha(mode)
         represents all alpha of given mode
-        
+
     getPhotoNumONSHELL(mode)
         represents the onshell photo numbers of given mode
-    
+
     Notes
     -----
-        -   the modes are 
+        -   the modes are
             'bw' for Breit-Wheeler-,
             'c' for Compton-,
             'bwx' for Breit-Wheeler-excange-,
@@ -182,7 +175,7 @@ class kinClass(object):
             '1' for exchange onshell,
             '2' for direct offshell,
             '3' for exchange offshell
-            matrix element. 
+            matrix element.
             The prefac '5' is rate prefac.
     """
     def __init__(self,config=None):
@@ -216,8 +209,28 @@ class kinClass(object):
         return 0
 
     def getMomenta(self,mode='full'):
-        """
+        r"""
         returns selected momenta
+
+        Parameters
+        ----------
+        mode : str
+            mode in which the momenta will be returned (default='full')
+
+        Returns
+        -------
+        np.ndarray
+            array of momenta in the given mode
+
+        Notes
+        -----
+        modes are
+            -   'full' for all momenta: (k,-p,p1,p2,p3)
+            -   'bw' for Breit-Wheeler part: (k,p2,p3)
+            -   'c' for Compton part: (k,-p,p1)
+            -   'bwx' for Breit-Wheeler exchange part: (k,p1,p3)
+            -   'cx' for Compton exchange part: (k,-p,p2)
+
         """
         if mode=='full':
             return self.__allMomenta
@@ -237,7 +250,7 @@ class kinClass(object):
         """
         evals all necesarry spinors
 
-        todo:
+        .. todo::
             -   move this func to src.qft
 
 
@@ -252,8 +265,28 @@ class kinClass(object):
         return evalAll(momenta[1:])
 
     def getSpinors(self,mode='full'):
-        """
+        r"""
         returns selected spinors
+
+        Parameters
+        ----------
+        mode : str
+            mode in which the momenta will be returned (default='full')
+
+        Returns
+        -------
+        np.ndarray
+            array of spinors in the given mode
+
+        Notes
+        -----
+        modes are
+            -   'full' for all spinors: (u,u1bar,u2bar,v3)
+            -   'bw' for Breit-Wheeler part: (u2bar,v3)
+            -   'c' for Compton part: (u,u1bar)
+            -   'bwx' for Breit-Wheeler exchange part: (u2bar,v3)
+            -   'cx' for Compton exchange part: (u,u2bar)
+
         """
         if mode=='full':
             return self.__allSpinors
@@ -281,8 +314,28 @@ class kinClass(object):
         self.__allAlphas = [self.__alphaBW,self.__alphaC,self.__alphaBWx,self.__alphaCx]
 
     def getAlpha(self,mode='full'):
-        """
-        return selected alpha
+        r"""
+        returns selected alphas
+
+        Parameters
+        ----------
+        mode : str
+            mode in which the momenta will be returned (default='full')
+
+        Returns
+        -------
+        np.ndarray
+            array of alphas in the given mode
+
+        Notes
+        -----
+        modes are
+            -   'full' for all alpha
+            -   'bw' for Breit-Wheeler part
+            -   'c' for Compton part
+            -   'bwx' for Breit-Wheeler exchange part
+            -   'cx' for Compton exchange part
+
         """
         if mode=='full':
             return self.__allAlphas
@@ -311,14 +364,31 @@ class kinClass(object):
         self.__allPhotoNumONSHELL = self.__evalPhotoNum(photoNumC,photoNumCx)
 
     def getPhotoNumONSHELL(self,mode='full'):
-        """
-        returns selected photoNums
+        r"""
+        returns selected onshell photo numbers
+
+        Parameters
+        ----------
+        mode : str
+            mode in which the momenta will be returned (default='full')
+
+        Returns
+        -------
+        np.ndarray
+            array(shape=(4,)) of onshell photo numbers in the given mode
+
+        Notes
+        -----
+        modes are
+            -   'full' for all photo numbers: (photoNumBW,photoNumC,photoNumBWx,photoNumCx)
+            -   'bw' for Breit-Wheeler part: (photoNumBw)
+            -   'c' for Compton part: (photoNumC)
+            -   'bwx' for Breit-Wheeler exchange part: (photoNumBWx)
+            -   'cx' for Compton exchange part: (photoNumCx)
+
         """
 
         if mode=='full':
             return self.__allPhotoNumONSHELL
         else:
             return self.__allPhotoNumONSHELL[modeDict[mode][2]]
-
-    def setMode(self,mode):
-        raise AttributeError("There is no method setMode anymore")

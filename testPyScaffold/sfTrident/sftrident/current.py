@@ -1,7 +1,7 @@
 """
 contains the current handling
 
-todo:
+.. todo::
     -   think about inheritance: default class with the stuff from cleanSet
     -   check sign in J1 and J2 (polariation!)
 
@@ -26,6 +26,47 @@ class currentClass(object):
     config : dict
         The configuration dictionary which contains at least intensity parameter 'a0', mass of the particles 'mass' and polarisation parameter 'xi'.
 
+    Attributes
+    ----------
+
+    J0 : np.ndarray
+        set of four currents J0 (one for each spin combination)
+
+    J1 : np.ndarray
+        set of four currents J1 (one for each spin combination)
+
+    J2 : np.ndarray
+        set of four currents J2 (one for each spin combination)
+
+    J3 : np.ndarray
+        set of four currents J3 (one for each spin combination)
+
+    Methods
+    -------
+    setKin(momPhoto,momA,momB,spinorA,spinorB)
+        evaluates all currents for given momenta and spinors
+
+    generalJ0(spinorA,spinorB)
+        evaluates all J0 for given spinors
+
+    generalJ12(momPhoto,momA,momB,spinorA,spinorB,pol)
+        evaluates all J1/2 for given spinors, momenta and laser polarisation
+
+    generalJ3(momPhoto,momA,momB,spinorA,spinorB)
+        evaluates all J3 for given spinors, momenta
+
+    evalJ0()
+        evaluates J0 and returns it (setKin() required)
+
+    evalJ1()
+        evaluates J1 and returns it (setKin() required)
+
+    evalJ2()
+        evaluates J2 and returns it (setKin() required)
+
+    evalJ3()
+        evaluates J3 and returns it (setKin() required)
+
     Notes
     -----
     The currents to be calculated are:
@@ -33,6 +74,9 @@ class currentClass(object):
     .. math:: J^\mu_0 = u_A(p_A) \gamma^\mu v_B(p_B)
 
     where
+
+    .. todo::
+        -   set the general functions private
     """
     def __init__(self,config=None):
         self.a0=config['a0']

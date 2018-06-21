@@ -1,18 +1,46 @@
 """
-The gauss module
-================
-This module provides gauss points and weights of several types.
-
-Types
------
- - gauss legendre (default)
- - gauss chebychev
- - gauss laguerre
+provides gauss points and weights of several types.
 """
 import numpy as np
 
 
 class gaussPoints(object):
+    r"""processed gauss points and weights
+
+    Parameters
+    ----------
+    deg : int
+        degree of gaussian quadrature (default=5)
+
+    mode : str
+        flag for the mode used
+
+    Attributes
+    ----------
+    mode : str
+        returns the mode of the instance
+
+    points : np.ndarray
+        array of gauss points (shape=(deg,))
+
+    weights : np.ndarray
+        array of gauss weights (shape=(deg,))
+
+    bounds : tuple
+        current boundaries of the gauss points
+
+    Methods
+    -------
+    transfrom(low,up)
+        transforms the gauss points and weights to the boundaries (low,up)
+
+    Notes
+    -----
+    -   the modes are
+         - gauss legendre: 'gaussLeg' (default)
+         - gauss chebychev: 'gaussCheb' (not tested jet)
+         - gauss laguerre: 'gaussLag' (not tested jet)
+    """
     def __init__(self,deg=5,mode="gaussLeg"):
         self.__deg = deg
         self.mode=mode
@@ -36,6 +64,31 @@ class gaussPoints(object):
         self.bounds = (-1.0,1.0)
 
     def transform(self,low,up):
+        r""" transformation of the boundaries
+
+        Parameters
+        ----------
+        low : float
+            lower boundary
+        up : float
+            upper boundary
+
+        Returns
+        -------
+        None
+            sets points and weights of the instance to the new boundaries
+
+        Notes
+        -----
+            -   every call: calculation starts from (-1,1), internally saved
+            -   new gauss points and weights are
+
+                .. math:: \hat x_i = \frac{b-a}{2}x_i + \frac{a+b}{2}
+                .. math:: \hat w_i = \frac{b-a}{2}w_i
+
+                where :math:`\hat x_i,\hat w_i` are the gauss points/weights to boundaries :math:`(a,b)` and :math:`x_i,w_i` the gauss points/weights to boundaries :math:`(-1,1)`
+
+        """
         self.points = (up-low)/2.0*self.__initPoints + (up+low)/2.0
         self.weights = (up-low)/2.0*self.__initWeights
         self.bounds = (low,up)

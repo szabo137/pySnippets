@@ -3,8 +3,7 @@ test env for gaussIntegration
 """
 import unittest
 import numpy as np
-from sftrident.math.gauss import gaussPoints
-
+import sftrident as sf
 
 class mytest(unittest.TestCase):
     def setUp(self):
@@ -19,7 +18,7 @@ class mytest(unittest.TestCase):
         tests the length of output after initialisation
         """
         for el in self.degs:
-            self.gauss = gaussPoints(el)
+            self.gauss = sf.math.gaussPoints(el)
             self.assertEqual(len(self.gauss.points),el)
             self.assertEqual(len(self.gauss.weights),el)
             self.assertEqual(self.gauss.bounds,(-1,1))
@@ -29,7 +28,7 @@ class mytest(unittest.TestCase):
         tests outputformat of transformed points and weights
         """
         for el in self.degs:
-            self.gauss = gaussPoints(el)
+            self.gauss = sf.math.gaussPoints(el)
             for bounds in self.newBounds:
                 self.testBound = bounds
                 self.gauss.transform(*bounds)
@@ -47,7 +46,7 @@ class mytest(unittest.TestCase):
         tests retundance of transformed points and weights
         """
         for el in self.degs:
-            self.gauss = gaussPoints(el)
+            self.gauss = sf.math.gaussPoints(el)
             for bounds in self.newBounds:
                 self.testBound = bounds
                 self.gauss.transform(*bounds)
@@ -60,7 +59,7 @@ class mytest(unittest.TestCase):
         """
         tests values of degree = 3
         """
-        self.gauss = gaussPoints(3)
+        self.gauss = sf.math.gaussPoints(3)
         for item,el in enumerate(self.gauss.points):
             self.assertLessEqual(abs(el - self.examplePoints[item]),self.eps)
         for item,el in enumerate(self.gauss.weights):
