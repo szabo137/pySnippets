@@ -1,0 +1,211 @@
+
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN"
+  "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+
+<html xmlns="http://www.w3.org/1999/xhtml">
+  <head>
+    <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+    <title>The triangleLib API Reference &#8212; triangleLib 1.0 documentation</title>
+    <link rel="stylesheet" href="_static/classic.css" type="text/css" />
+    <link rel="stylesheet" href="_static/pygments.css" type="text/css" />
+    <script type="text/javascript">
+      var DOCUMENTATION_OPTIONS = {
+        URL_ROOT:    './',
+        VERSION:     '1.0',
+        COLLAPSE_INDEX: false,
+        FILE_SUFFIX: '.html',
+        HAS_SOURCE:  true,
+        SOURCELINK_SUFFIX: '.txt'
+      };
+    </script>
+    <script type="text/javascript" src="_static/jquery.js"></script>
+    <script type="text/javascript" src="_static/underscore.js"></script>
+    <script type="text/javascript" src="_static/doctools.js"></script>
+    <script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.1/MathJax.js?config=TeX-AMS-MML_HTMLorMML"></script>
+    <link rel="index" title="Index" href="genindex.html" />
+    <link rel="search" title="Search" href="search.html" />
+    <link rel="next" title="The “subMod” module" href="subMod.html" />
+    <link rel="prev" title="Example: guide.rst — The trianglelib guide" href="guide.html" /> 
+  </head>
+  <body>
+    <div class="related" role="navigation" aria-label="related navigation">
+      <h3>Navigation</h3>
+      <ul>
+        <li class="right" style="margin-right: 10px">
+          <a href="genindex.html" title="General Index"
+             accesskey="I">index</a></li>
+        <li class="right" >
+          <a href="py-modindex.html" title="Python Module Index"
+             >modules</a> |</li>
+        <li class="right" >
+          <a href="subMod.html" title="The “subMod” module"
+             accesskey="N">next</a> |</li>
+        <li class="right" >
+          <a href="guide.html" title="Example: guide.rst — The trianglelib guide"
+             accesskey="P">previous</a> |</li>
+        <li class="nav-item nav-item-0"><a href="index.html">triangleLib 1.0 documentation</a> &#187;</li> 
+      </ul>
+    </div>  
+
+    <div class="document">
+      <div class="documentwrapper">
+        <div class="bodywrapper">
+          <div class="body" role="main">
+            
+  <div class="section" id="the-trianglelib-api-reference">
+<h1>The triangleLib API Reference<a class="headerlink" href="#the-trianglelib-api-reference" title="Permalink to this headline">¶</a></h1>
+<div class="section" id="module-trianglelib.shape">
+<span id="the-shape-module"></span><h2>The “shape” module<a class="headerlink" href="#module-trianglelib.shape" title="Permalink to this headline">¶</a></h2>
+<dl class="class">
+<dt id="trianglelib.shape.Triangle">
+<em class="property">class </em><code class="descclassname">trianglelib.shape.</code><code class="descname">Triangle</code><span class="sig-paren">(</span><em>a</em>, <em>b</em>, <em>c</em><span class="sig-paren">)</span><a class="reference internal" href="_modules/trianglelib/shape.html#Triangle"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#trianglelib.shape.Triangle" title="Permalink to this definition">¶</a></dt>
+<dd><p>A triangle is a three-sided polygon.</p>
+<p>&lt;Here is the description of instantiation.&gt;</p>
+<dl class="method">
+<dt id="trianglelib.shape.Triangle.is_similar">
+<code class="descname">is_similar</code><span class="sig-paren">(</span><em>triangle</em><span class="sig-paren">)</span><a class="reference internal" href="_modules/trianglelib/shape.html#Triangle.is_similar"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#trianglelib.shape.Triangle.is_similar" title="Permalink to this definition">¶</a></dt>
+<dd><p>Return whether this triangle is similar to another triangle.</p>
+</dd></dl>
+
+<dl class="method">
+<dt id="trianglelib.shape.Triangle.is_equilateral">
+<code class="descname">is_equilateral</code><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="reference internal" href="_modules/trianglelib/shape.html#Triangle.is_equilateral"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#trianglelib.shape.Triangle.is_equilateral" title="Permalink to this definition">¶</a></dt>
+<dd><p>Return whether this triangle is equilateral.</p>
+</dd></dl>
+
+<dl class="method">
+<dt id="trianglelib.shape.Triangle.is_isosceles">
+<code class="descname">is_isosceles</code><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="reference internal" href="_modules/trianglelib/shape.html#Triangle.is_isosceles"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#trianglelib.shape.Triangle.is_isosceles" title="Permalink to this definition">¶</a></dt>
+<dd><p>Return whether this triangle is isoceles.</p>
+</dd></dl>
+
+<dl class="method">
+<dt id="trianglelib.shape.Triangle.perimeter">
+<code class="descname">perimeter</code><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="reference internal" href="_modules/trianglelib/shape.html#Triangle.perimeter"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#trianglelib.shape.Triangle.perimeter" title="Permalink to this definition">¶</a></dt>
+<dd><p>Return the perimeter of this triangle.</p>
+</dd></dl>
+
+<dl class="method">
+<dt id="trianglelib.shape.Triangle.area">
+<code class="descname">area</code><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="reference internal" href="_modules/trianglelib/shape.html#Triangle.area"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#trianglelib.shape.Triangle.area" title="Permalink to this definition">¶</a></dt>
+<dd><p>Return the area of this triangle.</p>
+</dd></dl>
+
+<dl class="method">
+<dt id="trianglelib.shape.Triangle.scale">
+<code class="descname">scale</code><span class="sig-paren">(</span><em>factor</em><span class="sig-paren">)</span><a class="reference internal" href="_modules/trianglelib/shape.html#Triangle.scale"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#trianglelib.shape.Triangle.scale" title="Permalink to this definition">¶</a></dt>
+<dd><p>Return a new triangle, <cite>factor</cite> times the size of this one.</p>
+</dd></dl>
+
+</dd></dl>
+
+</div>
+<div class="section" id="module-trianglelib.utils">
+<span id="the-utils-module"></span><h2>The “utils” module<a class="headerlink" href="#module-trianglelib.utils" title="Permalink to this headline">¶</a></h2>
+<p>Routines to test triangle properties without explicit instantiation.</p>
+<dl class="function">
+<dt id="trianglelib.utils.compute_area">
+<code class="descclassname">trianglelib.utils.</code><code class="descname">compute_area</code><span class="sig-paren">(</span><em>a</em>, <em>b</em>, <em>c</em><span class="sig-paren">)</span><a class="reference internal" href="_modules/trianglelib/utils.html#compute_area"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#trianglelib.utils.compute_area" title="Permalink to this definition">¶</a></dt>
+<dd><p>Return the area of the triangle with side lengths <cite>a</cite>, <cite>b</cite>, and <cite>c</cite>.</p>
+<p>If the three lengths provided cannot be the sides of a triangle,
+then the area 0 is returned.</p>
+</dd></dl>
+
+<dl class="function">
+<dt id="trianglelib.utils.compute_perimeter">
+<code class="descclassname">trianglelib.utils.</code><code class="descname">compute_perimeter</code><span class="sig-paren">(</span><em>a</em>, <em>b</em>, <em>c</em><span class="sig-paren">)</span><a class="reference internal" href="_modules/trianglelib/utils.html#compute_perimeter"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#trianglelib.utils.compute_perimeter" title="Permalink to this definition">¶</a></dt>
+<dd><p>Return the perimeer of the triangle with side lengths <cite>a</cite>, <cite>b</cite>, and <cite>c</cite>.</p>
+<p>If the three lengths provided cannot be the sides of a triangle,
+then the perimeter 0 is returned.</p>
+</dd></dl>
+
+<dl class="function">
+<dt id="trianglelib.utils.is_equilateral">
+<code class="descclassname">trianglelib.utils.</code><code class="descname">is_equilateral</code><span class="sig-paren">(</span><em>a</em>, <em>b</em>, <em>c</em><span class="sig-paren">)</span><a class="reference internal" href="_modules/trianglelib/utils.html#is_equilateral"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#trianglelib.utils.is_equilateral" title="Permalink to this definition">¶</a></dt>
+<dd><p>Return whether lengths <cite>a</cite>, <cite>b</cite>, and <cite>c</cite> are an equilateral triangle.</p>
+</dd></dl>
+
+<dl class="function">
+<dt id="trianglelib.utils.is_isosceles">
+<code class="descclassname">trianglelib.utils.</code><code class="descname">is_isosceles</code><span class="sig-paren">(</span><em>a</em>, <em>b</em>, <em>c</em><span class="sig-paren">)</span><a class="reference internal" href="_modules/trianglelib/utils.html#is_isosceles"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#trianglelib.utils.is_isosceles" title="Permalink to this definition">¶</a></dt>
+<dd><p>Return whether lengths <cite>a</cite>, <cite>b</cite>, and <cite>c</cite> are an isosceles triangle.</p>
+</dd></dl>
+
+<dl class="function">
+<dt id="trianglelib.utils.is_triangle">
+<code class="descclassname">trianglelib.utils.</code><code class="descname">is_triangle</code><span class="sig-paren">(</span><em>a</em>, <em>b</em>, <em>c</em><span class="sig-paren">)</span><a class="reference internal" href="_modules/trianglelib/utils.html#is_triangle"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#trianglelib.utils.is_triangle" title="Permalink to this definition">¶</a></dt>
+<dd><p>Return whether lengths <cite>a</cite>, <cite>b</cite>, <cite>c</cite> can be the sides of a triangle.</p>
+</dd></dl>
+
+</div>
+</div>
+
+
+          </div>
+        </div>
+      </div>
+      <div class="sphinxsidebar" role="navigation" aria-label="main navigation">
+        <div class="sphinxsidebarwrapper">
+<h3><a href="index.html">Table Of Contents</a></h3>
+<p class="caption"><span class="caption-text">Contents:</span></p>
+<ul class="current">
+<li class="toctree-l1"><a class="reference internal" href="guide.html">Example: guide.rst — The trianglelib guide</a></li>
+<li class="toctree-l1 current"><a class="current reference internal" href="#">The triangleLib API Reference</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="#module-trianglelib.shape">The “shape” module</a></li>
+<li class="toctree-l2"><a class="reference internal" href="#module-trianglelib.utils">The “utils” module</a></li>
+</ul>
+</li>
+<li class="toctree-l1"><a class="reference internal" href="subMod.html">The “subMod” module</a></li>
+</ul>
+
+  <h4>Previous topic</h4>
+  <p class="topless"><a href="guide.html"
+                        title="previous chapter">Example: guide.rst — The trianglelib guide</a></p>
+  <h4>Next topic</h4>
+  <p class="topless"><a href="subMod.html"
+                        title="next chapter">The “subMod” module</a></p>
+  <div role="note" aria-label="source link">
+    <h3>This Page</h3>
+    <ul class="this-page-menu">
+      <li><a href="_sources/api.rst.txt"
+            rel="nofollow">Show Source</a></li>
+    </ul>
+   </div>
+<div id="searchbox" style="display: none" role="search">
+  <h3>Quick search</h3>
+    <form class="search" action="search.html" method="get">
+      <div><input type="text" name="q" /></div>
+      <div><input type="submit" value="Go" /></div>
+      <input type="hidden" name="check_keywords" value="yes" />
+      <input type="hidden" name="area" value="default" />
+    </form>
+</div>
+<script type="text/javascript">$('#searchbox').show(0);</script>
+        </div>
+      </div>
+      <div class="clearer"></div>
+    </div>
+    <div class="related" role="navigation" aria-label="related navigation">
+      <h3>Navigation</h3>
+      <ul>
+        <li class="right" style="margin-right: 10px">
+          <a href="genindex.html" title="General Index"
+             >index</a></li>
+        <li class="right" >
+          <a href="py-modindex.html" title="Python Module Index"
+             >modules</a> |</li>
+        <li class="right" >
+          <a href="subMod.html" title="The “subMod” module"
+             >next</a> |</li>
+        <li class="right" >
+          <a href="guide.html" title="Example: guide.rst — The trianglelib guide"
+             >previous</a> |</li>
+        <li class="nav-item nav-item-0"><a href="index.html">triangleLib 1.0 documentation</a> &#187;</li> 
+      </ul>
+    </div>
+    <div class="footer" role="contentinfo">
+        &#169; Copyright 2018, Uwe Hernandez Acosta.
+      Created using <a href="http://sphinx-doc.org/">Sphinx</a> 1.6.3.
+    </div>
+  </body>
+</html>

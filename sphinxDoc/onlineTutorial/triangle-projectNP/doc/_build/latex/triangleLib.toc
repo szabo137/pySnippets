@@ -1,0 +1,18 @@
+\select@language {english}
+\contentsline {chapter}{\numberline {1}Example: guide.rst \IeC {\textemdash } The trianglelib guide}{1}{chapter.1}
+\contentsline {section}{\numberline {1.1}Special triangles}{1}{section.1.1}
+\contentsline {section}{\numberline {1.2}Triangle dimensions}{1}{section.1.2}
+\contentsline {section}{\numberline {1.3}Valid triangles}{1}{section.1.3}
+\contentsline {section}{\numberline {1.4}The subMod}{2}{section.1.4}
+\contentsline {chapter}{\numberline {2}The triangleLib API Reference}{3}{chapter.2}
+\contentsline {section}{\numberline {2.1}The \IeC {\textquotedblleft }shape\IeC {\textquotedblright } module}{3}{section.2.1}
+\contentsline {paragraph}{Methods}{3}{paragraph*.4}
+\contentsline {section}{\numberline {2.2}The \IeC {\textquotedblleft }utils\IeC {\textquotedblright } module}{3}{section.2.2}
+\contentsline {chapter}{\numberline {3}The \IeC {\textquotedblleft }subMod\IeC {\textquotedblright } module}{5}{chapter.3}
+\contentsline {section}{\numberline {3.1}The \IeC {\textquoteleft }subFunc\IeC {\textquoteright } Module}{5}{section.3.1}
+\contentsline {paragraph}{Notes}{6}{paragraph*.17}
+\contentsline {paragraph}{References}{6}{paragraph*.18}
+\contentsline {paragraph}{Examples}{6}{paragraph*.21}
+\contentsline {chapter}{Bibliography}{7}{chapter*.22}
+\contentsline {chapter}{Python Module Index}{9}{section*.24}
+\contentsline {chapter}{Index}{11}{section*.25}

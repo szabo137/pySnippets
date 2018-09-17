@@ -1,0 +1,18 @@
+\indexentry{trianglelib.subMod (module)|hyperpage}{2}
+\indexentry{trianglelib.shape (module)|hyperpage}{3}
+\indexentry{Triangle (class in trianglelib.shape)|hyperpage}{3}
+\indexentry{is\_similar() (trianglelib.shape.Triangle method)|hyperpage}{3}
+\indexentry{is\_equilateral() (trianglelib.shape.Triangle method)|hyperpage}{3}
+\indexentry{is\_isosceles() (trianglelib.shape.Triangle method)|hyperpage}{3}
+\indexentry{perimeter() (trianglelib.shape.Triangle method)|hyperpage}{3}
+\indexentry{area() (trianglelib.shape.Triangle method)|hyperpage}{3}
+\indexentry{scale() (trianglelib.shape.Triangle method)|hyperpage}{3}
+\indexentry{trianglelib.utils (module)|hyperpage}{3}
+\indexentry{compute\_area() (in module trianglelib.utils)|hyperpage}{3}
+\indexentry{compute\_perimeter() (in module trianglelib.utils)|hyperpage}{3}
+\indexentry{is\_equilateral() (in module trianglelib.utils)|hyperpage}{3}
+\indexentry{is\_isosceles() (in module trianglelib.utils)|hyperpage}{3}
+\indexentry{is\_triangle() (in module trianglelib.utils)|hyperpage}{3}
+\indexentry{trianglelib.subMod (module)|hyperpage}{5}
+\indexentry{trianglelib.subMod.subFunc (module)|hyperpage}{5}
+\indexentry{wrapper() (in module trianglelib.subMod.subFunc)|hyperpage}{5}

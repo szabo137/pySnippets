@@ -1,0 +1,41 @@
+\begin{sphinxtheindex}
+\def\bigletter#1{{\Large\sffamily#1}\nopagebreak\vspace{1mm}}
+
+  \bigletter A
+  \item area() (trianglelib.shape.Triangle method), \hyperpage{3}
+
+  \indexspace
+  \bigletter C
+  \item compute\_area() (in module trianglelib.utils), \hyperpage{3}
+  \item compute\_perimeter() (in module trianglelib.utils), \hyperpage{3}
+
+  \indexspace
+  \bigletter F
+  \item foo() (in module trianglelib.subMod.subFunc), \hyperpage{5}
+
+  \indexspace
+  \bigletter I
+  \item is\_equilateral() (in module trianglelib.utils), \hyperpage{3}
+  \item is\_equilateral() (trianglelib.shape.Triangle method), \hyperpage{3}
+  \item is\_isosceles() (in module trianglelib.utils), \hyperpage{3}
+  \item is\_isosceles() (trianglelib.shape.Triangle method), \hyperpage{3}
+  \item is\_similar() (trianglelib.shape.Triangle method), \hyperpage{3}
+  \item is\_triangle() (in module trianglelib.utils), \hyperpage{4}
+
+  \indexspace
+  \bigletter P
+  \item perimeter() (trianglelib.shape.Triangle method), \hyperpage{3}
+
+  \indexspace
+  \bigletter S
+  \item scale() (trianglelib.shape.Triangle method), \hyperpage{3}
+
+  \indexspace
+  \bigletter T
+  \item Triangle (class in trianglelib.shape), \hyperpage{3}
+  \item trianglelib.shape (module), \hyperpage{3}
+  \item trianglelib.subMod (module), \hyperpage{2}, \hyperpage{5}
+  \item trianglelib.subMod.subFunc (module), \hyperpage{5}
+  \item trianglelib.utils (module), \hyperpage{3}
+
+\end{sphinxtheindex}
