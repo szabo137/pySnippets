@@ -24,9 +24,43 @@ def rapidity(omega,E):
 if __name__=='__main__':
     restMass = 0.511 #MeV
     cmsEn = 3.353
+    
+    print "---------- XFEL set -----------"
     Eelec = 50.0/restMass
     photoEn = omegaFromE(Eelec,cmsEn)
-    print "sqrt(s) = %s MeV"%(cmsEn*restMass)
-    print "init Eelec = %s MeV"%(Eelec*restMass)
-    print "init omega = %s MeV"%(photoEn*restMass)
+    print "sqrt(s) = %s me (%s MeV)"%(cmsEn,cmsEn*restMass)
+    print "init Eelec = %s me (%s MeV)"%(Eelec,Eelec*restMass)
+    print "init omega = %s me (%s MeV)"%(photoEn,photoEn*restMass)
+    print "relative rapidity = %s "%(rapidity(photoEn,Eelec))
+
+    print "---------- e^- rest -----------"
+    Eelec = 1.0
+    photoEn = omegaFromE(Eelec,cmsEn)
+    print "sqrt(s) = %s me (%s MeV)"%(cmsEn,cmsEn*restMass)
+    print "init Eelec = %s me (%s MeV)"%(Eelec,Eelec*restMass)
+    print "init omega = %s me (%s MeV)"%(photoEn,photoEn*restMass)
+    print "relative rapidity = %s "%(rapidity(photoEn,Eelec))
+
+    print "---------- equal mom. -----------"
+    Eelec = (cmsEn**2 + 1)/(2*cmsEn)
+    photoEn = omegaFromE(Eelec,cmsEn)
+    print "sqrt(s) = %s me (%s MeV)"%(cmsEn,cmsEn*restMass)
+    print "init Eelec = %s me (%s MeV)"%(Eelec,Eelec*restMass)
+    print "init omega = %s me (%s MeV)"%(photoEn,photoEn*restMass)
+    print "relative rapidity = %s "%(rapidity(photoEn,Eelec))
+
+    print "---------- LUXE -----------"
+    Eelec = 17.5*1e3/restMass
+    photoEn = omegaFromE(Eelec,cmsEn)
+    print "sqrt(s) = %s me (%s MeV)"%(cmsEn,cmsEn*restMass)
+    print "init Eelec = %s me (%s MeV)"%(Eelec,Eelec*restMass)
+    print "init omega = %s me (%s MeV)"%(photoEn,photoEn*restMass)
+    print "relative rapidity = %s "%(rapidity(photoEn,Eelec))
+
+    print "---------- E-144 -----------"
+    Eelec = 46.6*1e3/restMass
+    photoEn = omegaFromE(Eelec,cmsEn)
+    print "sqrt(s) = %s me (%s MeV)"%(cmsEn,cmsEn*restMass)
+    print "init Eelec = %s me (%s MeV)"%(Eelec,Eelec*restMass)
+    print "init omega = %s me (%s MeV)"%(photoEn,photoEn*restMass)
     print "relative rapidity = %s "%(rapidity(photoEn,Eelec))

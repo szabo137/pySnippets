@@ -1,0 +1,19 @@
+
+        pyTable test
+============================
+
+i) install:
+    -   setup virtualenv
+        
+        $ virtualenv pyTableEnv
+        $ source pyTableEnv/bin/activate
+        
+    -   update pip
+        
+        $ pip isntall --upgrade pip
+        
+    -   install tables
+    
+        $ pip install tables
+        
+
