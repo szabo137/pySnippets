@@ -1,0 +1,1 @@
+double dblcosFunc(double x);
