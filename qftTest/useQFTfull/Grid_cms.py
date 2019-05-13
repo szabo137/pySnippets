@@ -3,10 +3,6 @@ from Konstanten import *
 
 
 def Grid_rap(y,w_cms,x_min,x_max,x_genau,a0,p_lim=0):
-<<<<<<< HEAD
-    print "ping"
-=======
->>>>>>> 211ed3adb1091b8608e3d244576af6ef6a0852a0
     import warnings
     warnings.filterwarnings("ignore")
 
@@ -24,11 +20,5 @@ def Grid_rap(y,w_cms,x_min,x_max,x_genau,a0,p_lim=0):
         return nan_to_num(p)
 
     p_perp = transpose([linspace(p_min(x_min,y_z),p_max(x_max,y_z),x_genau) for y_z in y])    # array y
-<<<<<<< HEAD
-    print "pmin: %s"%(str(p_min(x_min,y_z).shape))
-=======
-    
-
->>>>>>> 211ed3adb1091b8608e3d244576af6ef6a0852a0
     warnings.filterwarnings("ignore")
     return p_perp
